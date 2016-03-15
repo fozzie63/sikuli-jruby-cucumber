@@ -1,7 +1,9 @@
-###################################
-# Step Definitions for Sikuli
+#########################################################
+# Step Definitions
+# SikuliX, JRuby, Cucumber on MacOS
 # Written by Richard Foster
-###################################
+# Date: 15/03/2016
+#########################################################
 
 Given /^I click on "(.*?)"$/ do |bitmap|
 	begin
@@ -47,10 +49,6 @@ When /^I drag "(.*?)" to "(.*?)"$/ do |bitmap, destination|
 	end
 end
 
-#Given /^I open the Firefox browser$/ do
-#	@script.openApp("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"
-#end
-
 When /^I type "(.*?)"$/ do |text|
 	@screen.type"#{text}"
 end
@@ -59,16 +57,20 @@ When /^I type "(.*?)" and tab$/ do |text|
 	@screen.type"#{text}"+ Key.TAB
 end
 
-When /^I use BACKSPACE$/ do
-	@screen.type(Sikuli::KEY_BACKSPACE)
+When /^I hit BACKSPACE$/ do
+	@screen.type(Sikulix::KEY_BACKSPACE)
 end
 
-When /^I use TAB$/ do
+When /^I hit ENTER$/ do
+	@screen.type("\n")
+end
+
+When /^I hit TAB$/ do
 	@screen.type("\t")
 end
 
-When /^I use CTRL A$/ do
-	@screen.type("a", Sikuli::KEY_CTRL)
+When /^I hit CTRL A$/ do
+	@screen.type("a", Sikulix::KEY_CTRL)
 end
 
 When /^I paste "(.*?)"$/ do |text|
@@ -121,28 +123,3 @@ When /^I uncheck all check boxes$/ do
 		@screen.click "jupiterExportButton.png"
 	end
 end
-
-# Make sikuli more robust
-# from org.sikuli.script.natives import Vision
-#Vision.setParameter("MinTargetSize", 6) # A small value such as 6 makes the matching algorithm be faster.
-#Vision.setParameter("MinTargetSize", 18) # A large value such as 18 makes the matching algorithm be more robust.
-
-#find("OK") return all regions with ok label
-#Region.text return text in a region
-
-# Beware using this cos the application is closed automatically after the job has finished
-#@script.openApp("C:\\Program Files (x86)\\BBC\\Jupiter\\bin\\Jupiter.exe")
-
-#popup("Hello World!\nHave fun with Sikuli!")
-
-#while @screen.exists "#{bitmap}"
-#	@screen.click "#{bitmap}"
-#	sleep 1
-#end
-#loop do @screen.click "#{bitmap}"
-#	sleep 1
-#	break if not (@screen.exists "#{bitmap}")
-#end
-
-#STDOUT.write "Given I click on " + bitmap + "\n"
-

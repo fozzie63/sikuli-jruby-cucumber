@@ -1,54 +1,56 @@
 # sikuli-jruby-cucumber
-Running Sikuli with JRuby and Cucumber
-
-INSTALLATION INSTRUCTIONS FOR MAC
+Running Sikuli with JRuby and Cucumber on MacOS
 
 1) INSTALL RVM (Ruby Virtual Machine)
 \curl -L https://get.rvm.io | sudo bash -s stable
-rvm install ruby-2.2.1
-rvm use ruby-2.2.1 --default
+rvm install jruby-1.7.19
+rvm use jruby-1.7.19 --default
 
-2) INSTALL RUBY GEMS UPDATE
-gem install rubygems-update cucumber rspec gherkin
+2) INSTALL RUBY GEMS
+gem install gherkin rspec cucumber sikulix
 
-3) INSTALL BREW
-Install brew if you don’t already have it -
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+3) CHECK SYSTEM ENVIRONMENT
+rvm list rubies
+Should be set to "=> jruby-1.7.19 [ x86_64 ]"
 
-4) INSTALL JRUBY
-brew install jruby
+rvm gemset list
+Shows where your gems are stored
 
-5) Install pristine gems
-gem pristine executable-hooks --version 1.3.2
-gem pristine ffi --version 1.9.10
-gem pristine gem-wrappers --version 1.2.7
-gem pristine gherkin --version 2.12.2
-gem pristine json --version 1.8.3
-gem pristine unf_ext --version 0.0.7.1
+gem list --local
+Shows which gems you have installed
 
-6) INSTALL gems using JRuby
-jruby -S gem install cucumber rspec-expectations sikuli
+4) INSTALL SIKULIX 1.1.0
+https://launchpad.net/sikuli/sikulix/1.1.0
+Create SikuliX folder under root and download the sikulixsetup-1.1.0.jar file to that location
+Double click the setup files and select all the options
+SikuliX app is created in the folder. Move this to Applications.
 
-7) Install Sikuli
-https://launchpad.net/sikuli/sikulix/1.0.1
-Double click setup jar
-Click options 2 and 4
+5) MacOS Accessibility permission
+Allow the app to take control of computer
+Goto System Preferences > Security & Privacy > Accessibility
+Add SikuliX to the list	
 
-vi /Users/rfo12/.rvm/gems/ruby-2.2.1/gems/sikuli-0.3.0/lib/sikuli/platform.rb
-Amend path to /Users/rfo12/Downloads/sikulixapi.jar
+6) Create Environment Variables
+export
+vi ~/.bash_profile
+export SIKULIX_HOME=/SikuliX
+export SIKULIXAPI_JAR=$SIKULI_HOME/sikulixapi.jar
 
-6) RUN A TEST
-jruby -S cucumber -f features/01_source_tree.feature
+7) TEST PREPARATION
+Create a shortcut to Chrome on the Desktop and ensure it is visible
+Open Chrome and open a new tab and then quit Chrome
 
-7) SETUP ENVIRONMENT VARIABLES
-Display all environment variables -
->export
+8) RUN THE TEST
+cucumber features/verify_google_search_button.feature
 
-sudo vi /etc/launchd.conf
-Enter the following lines:
+9) CREATING FURTHER TESTS
+Its necessary to create the png files using the SikuliX IDE. Grab on MacOS does not work and even when I tried to halve the resolution of the file in Preview Sikuli still wouldn't have it.
+Open up SikuliX IDE and capture the elements that you want
+Once finished save as a Sikuli source file
+Right click on the Sikuli source file in Finder and select "Show Package Contents". The png files are contained here.
+You will need to give the png files more user friendly names.
+These can then be copied to your image file location.
 
-setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk
-setenv MAVEN_OPTS "-Xmx1024M -XX:MaxPermSize=512m"
-setenv M2_HOME /RichardsQaTestsShared/apache-maven-3.0.4
-setenv M2 /RichardsQaTestsShared/apache-maven-3.0.4/bin
-setenv JENKINS_HOME /Jenkins
+
+
+
