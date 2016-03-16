@@ -22,7 +22,8 @@ Shows which gems you have installed
 4) INSTALL SIKULIX 1.1.0  
 https://launchpad.net/sikuli/sikulix/1.1.0  
 Create SikuliX folder under root and download the sikulixsetup-1.1.0.jar file to that location  
-Double click the setup files and select all the options  
+Double click the setup file and select options 1 (Python and JRuby) and 2
+Click Yes to the remaining dialogue screens.
 SikuliX app is created in the folder. Move this to Applications.  
 
 5) MacOS Accessibility permission  
@@ -31,16 +32,19 @@ Goto System Preferences > Security & Privacy > Accessibility
 Add SikuliX to the list	  
 
 6) Create Environment Variables  
-export  
-vi ~/.bash_profile  
+export  (to display environment variables)
+vi ~/.bash_profile (and add the following)
 export SIKULIX_HOME=/SikuliX  
-export SIKULIXAPI_JAR=$SIKULI_HOME/sikulixapi.jar  
+export SIKULIXAPI_JAR=$SIKULI_HOME/sikulixapi.jar 
+source ~/.bash_profile (to inject new variables into environment)
 
 7) TEST PREPARATION  
 Create a shortcut to Chrome on the Desktop and ensure it is visible  
-Open Chrome and open a new tab and then quit Chrome  
+Open Chrome and open a new tab and then quit Chrome
+Amend the Image path in sikulix_jruby_cucumber_env.rb
 
-8) RUN THE TEST  
+8) RUN THE TEST
+cd sikuli-jruby-cucumber
 cucumber features/verify_google_search_button.feature  
 
 9) CREATING FURTHER TESTS  

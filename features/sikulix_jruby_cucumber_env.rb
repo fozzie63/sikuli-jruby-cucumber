@@ -8,7 +8,7 @@
 require "sikulix/platform"
 Sikulix::Platform.check_and_require
 require "sikulix/sikulix.rb"
-Sikulix::ImagePath.add("/Users/rfo12/Downloads/sikuli-jruby-cucumber/images/")
+Sikulix::ImagePath.add("/git_repo_ruby/sikuli-jruby-cucumber/images/")
 require '/SikuliX/sikulixapi.jar'
 
 class SikuliNavigator
