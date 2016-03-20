@@ -2,7 +2,6 @@
 # Environment file  
 # SikuliX, JRuby, Cucumber on MacOS
 # Written by Richard Foster
-# Date: 15/03/2016
 #########################################################
 
 require "sikulix/platform"
